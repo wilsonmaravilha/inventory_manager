@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  price: 1.5
+  details: MyString
+  qty_current: 1
+  qty_ideal: 1
+  qty_sold: 1
+  avg_sales: 1.5
+  supplier: MyString
+  exp_date: 2013-11-14 04:56:38
+  pur_date: 2013-11-14 04:56:38
+
+two:
+  name: MyString
+  price: 1.5
+  details: MyString
+  qty_current: 1
+  qty_ideal: 1
+  qty_sold: 1
+  avg_sales: 1.5
+  supplier: MyString
+  exp_date: 2013-11-14 04:56:38
+  pur_date: 2013-11-14 04:56:38

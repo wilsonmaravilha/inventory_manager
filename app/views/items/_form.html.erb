@@ -1,0 +1,68 @@
+<%= form_for @item, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :details, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :details, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :qty_current, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :qty_current, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :qty_ideal, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :qty_ideal, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :qty_sold, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :qty_sold, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :avg_sales, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :avg_sales, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :supplier, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :supplier, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :exp_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :exp_date, :class => 'text_field', :value => Date.today + 30.days %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pur_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pur_date, :class => 'text_field', :value => Date.today %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                items_path, :class => 'btn' %>
+  </div>
+<% end %>
