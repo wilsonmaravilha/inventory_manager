@@ -7,6 +7,8 @@ gem 'bootstrap-datepicker-rails'
 
 gem "therubyracer"
 
+gem 'devise'
+
 gem "less-rails"
 
 gem 'twitter-bootstrap-rails'

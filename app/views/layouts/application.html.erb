@@ -58,6 +58,9 @@
               <ul class="nav">
                 <li><%= link_to "Item Management", items_path  %></li>
                 <li><%= link_to "Update Stock Levels", items_record_sale_path  %></li>
+                <li><% if user_signed_in? %>
+                <%= link_to "Logout", destroy_user_session_path, method: "delete" %>
+              <% end %></li>
               </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -68,12 +71,20 @@
         <div class="row">
           <div class="span9">
             <%= bootstrap_flash %>
+            <div>
+              <% if user_signed_in? %>
+                Hello, <%= current_user.email %>!
+              <% else %>
+                Please log in to continue.
+              <% end %>
+            </div>
             <%= yield %>
           </div>
           <div class="span3">
             <div class="well sidebar-nav pull-right">
               <h3>Messages</h3>
-              <p>Welcome, Pascal! For now, I am still working on the dates. At the moment they must be entered manually in the month/day/year format. </p>
+              <p>Welcome! This is all very, VERY beta but feel free to explore! If you have any suggestions or comments click "Reply" below or "Tech Support" at the footer.
+                Some things to play around with: expiry dates and current vs desired stock levels :)</p>
               <ul class="nav nav-list">
                 <li class="nav-header"></li>
                 <li><p><i class="icon-comment"></i><%= link_to "Reply", "mailto:wilsonmaravilha@gmail.com"%></li>
@@ -92,9 +103,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-inner">
-    <div class="nav navbar-nav pull-down"><p>
-      &copy; <a href="http://wilsonmaravilha.com">Wilson Maravilha</a> <%= Date.today.year %>
-      <a href="http://wilsonmaravilha.com/contactme/">Tech Support</a></p>
+    <div class="nav navbar-nav pull-down">
+      <ul class="nav">
+      <li><a href="http://wilsonmaravilha.com">Wilson Maravilha - <%= Date.today.year %></a></li>
+      <li><a href="http://wilsonmaravilha.com/contactme/">Tech Support</a></li>
+    </ul>
     </div>
   </div><!-- /.navbar-collapse -->
 </nav>
