@@ -59,7 +59,7 @@
                 <li><%= link_to "Item Management", items_path  %></li>
                 <li><%= link_to "Record Sale", items_record_sale_path  %></li>
                 <li><% if user_signed_in? %>
-                <%= link_to "Logout", destroy_user_session_path, method: "delete" %>
+                <%= link_to "Signed in as #{current_user.email} - Logout", destroy_user_session_path, method: "delete" %>
               <% end %></li>
               </ul>
           </div><!--/.nav-collapse -->
@@ -71,13 +71,6 @@
         <div class="row">
           <div class="span9">
             <%= bootstrap_flash %>
-            <div>
-              <% if user_signed_in? %>
-                Hello, <%= current_user.email %>!
-              <% else %>
-                Please log in to continue.
-              <% end %>
-            </div>
             <%= yield %>
           </div>
           <div class="span3">
