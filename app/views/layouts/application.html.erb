@@ -45,7 +45,7 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar navbar-fixed-top navbar-inverse row-fluid">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
@@ -58,7 +58,7 @@
               <ul class="nav">
                 <li><%= link_to "Item Management", items_path  %></li>
                 <li><%= link_to "Record Sale", items_record_sale_path  %></li>
-                <li><% if user_signed_in? %>
+                <li class='pull-right'><% if user_signed_in? %>
                 <%= link_to "Signed in as #{current_user.email} - Logout", destroy_user_session_path, method: "delete" %>
               <% end %></li>
               </ul>
@@ -73,27 +73,35 @@
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
+          <% if @xXx %>
           <div class="span3">
             <div class="well sidebar-nav pull-right">
-              <h3>Updates</h3>
-              
-              </ul>
-              <div class="well">
-                <h5>Nov 14</h5>
-              <p>Now with Authentication! :D</p>
-              </ul>
+              <div id="check_stock_levels">
+                <% @items.each do |item| %>
+                  <% counter = 0 %>
+                  <% if item.exp_date <= Date.today %>
+                    <% counter = counter + 1 %>
+                    <div class="alert alert-danger">
+                      <strong>Warning! </strong><%= item.name %> has expired!
+                    </div>
+                  <% end %>
+                  <% if item.qty_current <= item.qty_ideal %>
+                    <% counter = counter + 1 %>
+                    <div class="alert alert-warning">
+                      <strong>Notice: </strong> your stock of <%= item.name %> is low!
+                    </div>
+                  <% end %>
+                  <% if counter == 0 %>
+                    <div class="alert alert-success">
+                      <strong>Congratulations: </strong> Everything is in order!
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
             </div><!--/.well -->
-              <div class="well">
-                <h5>Nov 13</h5>
-              <p>Welcome! This is all very, VERY beta but feel free to explore! If you have any suggestions or comments click "Reply" below or "Tech Support" at the footer.
-                Some things to play around with: expiry dates and current vs desired stock levels :)</p>
-              <ul class="nav nav-list">
-                <li class="nav-header"></li>
-                <li><p><i class="icon-comment"></i><%= link_to "Reply", "mailto:wilsonmaravilha@gmail.com"%></li>
-              </ul>
-            </div><!--/.well -->
-            </div><!--/.well -->
+           
           </div><!--/span-->
+           <% end %>
         </div><!--/row-->
       <br />
       <br />

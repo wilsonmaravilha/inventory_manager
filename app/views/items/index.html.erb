@@ -45,22 +45,6 @@
   </tbody>
 </table>
 <br />
-<div id="check_stock_levels">
-  <% @items.each do |item| %>
-    <% if item.exp_date <= Date.today %>
-      <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Warning! </strong><%= item.name %> has expired!
-      </div>
-    <% end %>
-    <% if item.qty_current <= item.qty_ideal %>
-      <div class="alert alert-warning alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Notice: </strong> your stock of <%= item.name %> is low!
-      </div>
-    <% end %>
-  <% end %>
-</div>
 <%= link_to "Add New Item",
             new_item_path,
             :class => 'btn btn-primary' %>
