@@ -57,7 +57,7 @@
             <div class="container nav-collapse">
               <ul class="nav">
                 <li><%= link_to "Item Management", items_path  %></li>
-                <li><%= link_to "Update Stock Levels", items_record_sale_path  %></li>
+                <li><%= link_to "Record Sale", items_record_sale_path  %></li>
                 <li><% if user_signed_in? %>
                 <%= link_to "Logout", destroy_user_session_path, method: "delete" %>
               <% end %></li>

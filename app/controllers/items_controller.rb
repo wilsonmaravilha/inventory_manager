@@ -28,6 +28,11 @@ class ItemsController < ApplicationController
 
   def update_stock
     current_user.items.update(params[:items].keys, params[:items].values)
+    current_user.items.all.each do |i|
+      i.qty_current = i.qty_current - i.sold_today
+      i.qty_sold = i.qty_sold + i.sold_today
+      i.save
+    end
     flash[:notice] = "Products Updated"
     redirect_to items_url
   end

@@ -13,6 +13,7 @@ gem "less-rails"
 
 gem 'twitter-bootstrap-rails'
 
+gem "font-awesome-sass-rails", "~> 3.0.2.2"
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
