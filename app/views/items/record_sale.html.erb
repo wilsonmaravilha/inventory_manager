@@ -1,4 +1,5 @@
 <h1>Record Sale</h1>
+<h4>Please enter how many of each Item you sold today.</h4>
 <%= form_tag items_update_stock_path, method: :post do %>
 	<% @items.each do |item| %>
 		<%= fields_for "items[]", item do |f| %>
