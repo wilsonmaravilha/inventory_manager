@@ -77,25 +77,27 @@
           <div class="span3">
             <div class="well sidebar-nav pull-right">
               <div id="check_stock_levels">
-                <% @items.each do |item| %>
+                <% 1.times do %>
                   <% counter = 0 %>
-                  <% if item.exp_date <= Date.today %>
-                    <% counter = counter + 1 %>
-                    <div class="alert alert-danger">
-                      <strong>Warning! </strong><%= item.name %> has expired!
-                    </div>
-                  <% end %>
-                  <% if item.qty_current <= item.qty_ideal %>
-                    <% counter = counter + 1 %>
-                    <div class="alert alert-warning">
-                      <strong>Notice: </strong> your stock of <%= item.name %> is low!
-                    </div>
+                  <% @items.each do |item| %>
+                    <% if item.exp_date <= (Date.today + 7.days) %>
+                      <% counter = counter + 1 %>
+                      <div class="alert alert-danger">
+                        <strong>Warning! </strong><%= item.name %> will soon expire!
+                      </div>
+                    <% end %>
+                    <% if item.qty_current <= (item.qty_ideal / 2)  %>
+                      <% counter = counter + 1 %>
+                      <div class="alert alert-warning">
+                        <strong>Notice: </strong> your stock of <%= item.name %> is low!
+                      </div>
+                    <% end %>
                   <% end %>
                   <% if counter == 0 %>
-                    <div class="alert alert-success">
-                      <strong>Congratulations: </strong> Everything is in order!
-                    </div>
-                  <% end %>
+                      <div class="alert alert-success">
+                        <strong>Congratulations: </strong> Everything is in order!
+                      </div>
+                    <% end %>
                 <% end %>
               </div>
             </div><!--/.well -->
