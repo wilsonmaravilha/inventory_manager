@@ -1,15 +1,19 @@
 <h1>Record Sale</h1>
-<h4>Please enter how many of each Item you sold today.</h4>
-<%= form_tag items_update_stock_path, method: :post do %>
-	<% @items.each do |item| %>
-		<%= fields_for "items[]", item do |f| %>
-			<div class="control-group">
-          		<h3><%= item.name %></h3>
-        		<div class="controls">
-      				<%= f.text_field :sold_today, :class => 'text_field' %>
-    			</div>
-  			</div>
+<% if !(@items.empty?) %>
+	<h4>Please enter how many of each Item you sold today.</h4>
+	<%= form_tag items_update_stock_path, method: :post do %>
+		<% @items.each do |item| %>
+			<%= fields_for "items[]", item do |f| %>
+				<div class="control-group">
+	          		<h3><%= item.name %></h3>
+	        		<div class="controls">
+	      				<%= f.text_field :sold_today, :class => 'text_field' %>
+	    			</div>
+	  			</div>
+			<% end %>
 		<% end %>
+		<%= submit_tag "Submit" %>
 	<% end %>
-	<%= submit_tag "Submit" %>
+<% else %>
+	<h2>Tip:</h2><h4>You need to add items in "Item Management" before you can record their sales!</h4>
 <% end %>
