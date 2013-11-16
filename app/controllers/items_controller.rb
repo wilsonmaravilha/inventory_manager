@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @xXx = true
+    @on_index_page = true
     @items = current_user.items.all
   end
 

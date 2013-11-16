@@ -73,27 +73,27 @@
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
-          <% if @xXx %>
+          <% if @on_index_page %>
           <div class="span3">
             <div class="well sidebar-nav pull-right">
               <div id="check_stock_levels">
                 <% 1.times do %>
-                  <% counter = 0 %>
+                  <% error_counter = 0 %>
                   <% @items.each do |item| %>
                     <% if item.exp_date <= (Date.today + 7.days) %>
-                      <% counter = counter + 1 %>
+                      <% error_counter = error_counter + 1 %>
                       <div class="alert alert-danger">
                         <strong>Warning! </strong><%= item.name %> will soon expire!
                       </div>
                     <% end %>
                     <% if item.qty_current <= (item.qty_ideal / 2)  %>
-                      <% counter = counter + 1 %>
+                      <% error_counter = error_counter + 1 %>
                       <div class="alert alert-warning">
                         <strong>Notice: </strong> your stock of <%= item.name %> is low!
                       </div>
                     <% end %>
                   <% end %>
-                  <% if counter == 0 %>
+                  <% if error_counter == 0 %>
                       <div class="alert alert-success">
                         <strong>Congratulations: </strong> Everything is in order!
                       </div>
