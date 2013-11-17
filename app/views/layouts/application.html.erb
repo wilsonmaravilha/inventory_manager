@@ -56,8 +56,11 @@
           <a class="brand" href="#">Pascal's Stock Manager</a>
             <div class="container nav-collapse">
               <ul class="nav">
+                <li class="divider-vertical"></li>
                 <li><%= link_to "Item Management", items_path  %></li>
+                <li class="divider-vertical"></li>
                 <li><%= link_to "Record Sale", items_record_sale_path  %></li>
+                <li class="divider-vertical"></li>
                 <li class='pull-right'><% if user_signed_in? %>
                 <%= link_to "Signed in as #{current_user.email} - Logout", destroy_user_session_path, method: "delete" %>
               <% end %></li>
@@ -118,6 +121,7 @@
     <div class="nav navbar-nav pull-down">
       <ul class="nav">
       <li><a href="http://wilsonmaravilha.com">Wilson Maravilha - <%= Date.today.year %></a></li>
+      <li class="divider-vertical"></li>
       <li><a href="http://wilsonmaravilha.com/contactme/">Tech Support</a></li>
     </ul>
     </div>
