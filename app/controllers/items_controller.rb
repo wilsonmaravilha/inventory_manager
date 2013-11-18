@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
       i.qty_sold = i.qty_sold + i.sold_today
       i.save
     end
-    flash[:notice] = "Products Updated"
+    flash[:notice] = "Sales added. "
     redirect_to items_url
   end
 
@@ -52,10 +52,11 @@ class ItemsController < ApplicationController
   def update_purchases
     current_user.items.update(params[:items].keys, params[:items].values)
     current_user.items.all.each do |i|
+      i.bought_today ||= 0
       i.qty_current = i.qty_current + i.bought_today
       i.save
     end
-    flash[:notice] = "Products Updated"
+    flash[:notice] = "New stock registered. "
     redirect_to items_url
   end
 
@@ -107,6 +108,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :price, :details, :qty_current, :qty_ideal, :qty_sold, :avg_sales, :supplier, :exp_date, :pur_date)
+      params.require(:item).permit(:name, :price, :details, :qty_current, :qty_ideal, :sold_today, :qty_sold, :avg_sales, :supplier, :exp_date, :pur_date, :bought_today)
     end
 end
