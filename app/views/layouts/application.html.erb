@@ -79,15 +79,22 @@
           <% if @on_index_page %>
           <div class="span3">
             <div class="well sidebar-nav pull-right">
+              <h2>Messages</h2>
               <div id="check_stock_levels">
                 <% 1.times do %>
                   <% error_counter = 0 %>
                   <% @items.each do |item| %>
                     <% if item.exp_date <= (Date.today + 7.days) %>
                       <% error_counter = error_counter + 1 %>
-                      <div class="alert alert-danger">
-                        <strong>Warning! </strong><%= item.name %> will soon expire!
-                      </div>
+                      <% if item.exp_date <= (Date.today) %>
+                        <div class="alert alert-danger">
+                          <strong>Warning! </strong><%= item.name %> has expired!
+                        </div>
+                      <% else %>
+                        <div class="alert alert-warning`">
+                          <strong>Warning! </strong><%= item.name %> will soon expire!
+                        </div>
+                      <% end %>
                     <% end %>
                     <% if item.qty_current <= (item.qty_ideal / 2)  %>
                       <% error_counter = error_counter + 1 %>
