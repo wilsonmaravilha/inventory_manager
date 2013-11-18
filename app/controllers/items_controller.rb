@@ -27,6 +27,10 @@ class ItemsController < ApplicationController
     @items = current_user.items.all
   end
 
+  def add_stock
+    @items = current_user.items.all
+  end
+
   def update_stock
     current_user.items.update(params[:items].keys, params[:items].values)
     current_user.items.all.each do |i|
@@ -44,6 +48,17 @@ class ItemsController < ApplicationController
     redirect_to items_url
   end
 
+
+  def update_purchases
+    current_user.items.update(params[:items].keys, params[:items].values)
+    current_user.items.all.each do |i|
+      i.qty_current = i.qty_current + i.bought_today
+      i.save
+    end
+    flash[:notice] = "Products Updated"
+    redirect_to items_url
+  end
+
   # POST /items
   # POST /items.json
   def create
@@ -51,7 +66,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item, notice: 'You Successfully added a new Item.' }
         format.json { render action: 'show', status: :created, location: @item }
       else
         format.html { render action: 'new' }

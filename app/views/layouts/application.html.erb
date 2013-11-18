@@ -61,10 +61,10 @@
                 <li class="divider-vertical"></li>
                 <li><%= link_to "Record Sale", items_record_sale_path  %></li>
                 <li class="divider-vertical"></li>
+                <li><%= link_to "Add Stock", items_add_stock_path  %></li>
               </ul>
               <ul class="nav pull-right navbar-right">
                 <% if user_signed_in? %>
-                <li class="divider-vertical"></li>
                   <li class='pull-right navbar-right'>
                   <%= link_to "Signed in as #{current_user.email} ", "#" %>
                   </li>

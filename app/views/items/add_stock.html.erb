@@ -1,0 +1,20 @@
+<h1>New Stock</h1>
+<% if !(@items.empty?) %>
+	<h4>Please enter how many of each Item you bought today.</h4>
+	<span class="text-danger"><p>* note that this must only be done ONCE a day.</p></span>
+	<%= form_tag items_update_purchases_path, method: :post do %>
+		<% @items.each do |item| %>
+			<%= fields_for "items[]", item do |f| %>
+				<div class="control-group">
+	          		<h3><%= item.name %></h3>
+	        		<div class="controls">
+	      				<%= f.text_field :bought_today, :class => 'text_field' %>
+	    			</div>
+	  			</div>
+			<% end %>
+		<% end %>
+		<%= submit_tag "Submit" %>
+	<% end %>
+<% else %>
+	<h2>Tip:</h2><h4>You need to add items in "Item Management" before you can record their purchases!</h4>
+<% end %>

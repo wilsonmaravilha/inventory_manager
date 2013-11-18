@@ -6,9 +6,17 @@ StockMgr::Application.routes.draw do
   get "/items_record_sale" => "items#record_sale"
   post "/items_record_sale" => "items#record_sale"
 
+  get "/items_add_stock" => "items#add_stock"
+  post "/items_add_stock" => "items#add_stock"
+
   get "/items_update_stock" => "items#update_stock"
   post "/items_update_stock" => "items#update_stock"
 
+
+
+
+  get "/items_update_purchases" => "items#update_purchases"
+  post "/items_update_purchases" => "items#update_purchases"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
