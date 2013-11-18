@@ -4,7 +4,7 @@
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
       <% val = @item.name %>
-      <% val ||= 0 %>
+      <% val ||= "" %>
       <%= f.text_field :name, :class => 'text_field form-control', :value => val %>
     </div>
   </div>
@@ -20,7 +20,7 @@
     <%= f.label :details, :class => 'control-label' %>
     <div class="controls">
       <% val = @item.details %>
-      <% val ||= 0 %>
+      <% val ||= "" %>
       <%= f.text_field :details, :class => 'text_field', :value => val %>
     </div>
   </div>
@@ -60,7 +60,7 @@
     <%= f.label :supplier, :class => 'control-label' %>
     <div class="controls">
       <% val = @item.supplier %>
-      <% val ||= 0 %>
+      <% val ||= "" %>
       <%= f.text_field :supplier, :class => 'text_field', :value => val %>
     </div>
   </div>
