@@ -30,6 +30,12 @@ class ItemsController < ApplicationController
   def update_stock
     current_user.items.update(params[:items].keys, params[:items].values)
     current_user.items.all.each do |i|
+      if i.days
+        i.days = i.days + 1
+      else
+        i.days = 1
+      end
+      i.avg_sales = i.avg_sales + (i.sold_today / i.days)
       i.qty_current = i.qty_current - i.sold_today
       i.qty_sold = i.qty_sold + i.sold_today
       i.save
